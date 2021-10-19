@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Age Calculator</title>
+      <style>
+         .app *,
+         .app *::after,
+         .app *::after {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: sans-serif, Arial, Helvetica, sans-serif;
+         }
+
+         .app {
+            width: 100%;
+            max-width: 600px;
+         }
+
+         .app fieldset {
+            border: none;
+            margin-bottom: 1rem;
+            width: 100%;
+         }
+
+         .app .legend-label {
+            margin-bottom: 0.3rem;
+         }
+
+         .app .form-controls {
+            display: flex;
+            justify-content: flex-start;
+         }
+
+         .app .form-controls input,
+         .app .form-controls select {
+            font-size: 1rem;
+            padding: 8px;
+            margin-right: 0.5rem;
+         }
+
+         .input button[type="submit"] {
+            background-color: #4caf50; /* Green */
+            border: none;
+            color: white;
+            padding: 12px 22px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 3px;
+            cursor: pointer;
+         }
+
+         .input button[type="submit"]:hover {
+            background-color: #3e8e41;
+         }
+
+         /* OUTPUT */
+
+         .output {
+            letter-spacing: 0.02rem;
+         }
+         .output > section {
+            padding: 1rem;
+         }
+         .output .content-container {
+            display: flex;
+            justify-content: center;
+            background-color: #f6f6f6;
+            border-radius: 5px;
+            border: 1px solid #dedede;
+         }
+         .output > section > h1 {
+            font-weight: normal;
+            margin-bottom: 0.4rem;
+         }
+
+         .content-container h1 {
+            font-size: 2rem;
+         }
+
+         .content-container article,
+         .content-container table {
+            margin: 1rem;
+            text-align: center;
+         }
+
+         .calc-error {
+            color: red;
+         }
+
+         .app table {
+            text-align: left;
+            border-collapse: collapse;
+         }
+
+         .app table th {
+            padding: 3px 2rem;
+            border-right: 1px solid #dedede;
+         }
+
+         .app table td {
+            padding-left: 1rem;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="app">
+         <section class="input">
+            <h1 class="heading">Age Calculator</h1>
+            <form id="cphp-form" action="age.php" method="post">
+               <fieldset id="dob">
+                  <legend class="legend-label">Date of Birth</legend>
+                  <div class="form-controls">
+                     <label for="dob-month" hidden> Month </label>
+                     <select name="dob-month" id="dob-month"></select>
+                     <label for="dob-day" hidden> Day </label>
+                     <select name="dob-day" id="dob-day"></select>
+                     <label for="dob-year" hidden> Year </label>
+                     <input
+                        type="number"
+                        size="6"
+                        value="1990"
+                        name="dob-year"
+                        id="dob-year"
+                        min="1"
+                        required
+                     />
+                  </div>
+               </fieldset>
+               <fieldset id="age-at">
+                  <legend class="legend-label">Date of Birth</legend>
+                  <div class="form-controls">
+                     <label for="age-at-month" hidden> Month </label>
+                     <select name="age-at-month" id="age-at-month"></select>
+                     <label for="age-at-day" hidden> Day </label>
+                     <select name="age-at-day" id="age-at-day"></select>
+                     <label for="age-at-year" hidden> Year </label>
+                     <input
+                        type="number"
+                        size="6"
+                        value="2020"
+                        name="age-at-year"
+                        id="age-at-year"
+                        min="1"
+                        required
+                     />
+                  </div>
+               </fieldset>
+               <button type="submit">Calculate</button>
+            </form>
+         </section>
+         <section class="output" id="output">
+            <section class="calc-error">
+               You're date of birth cannot be greater than age at date
+            </section>
+            <section class="present-age">
+               <h1>Present Age</h1>
+               <div class="content-container">
+                  <article>
+                     <h1>00</h1>
+                     <p>Year</p>
+                  </article>
+                  <article>
+                     <h1>00</h1>
+                     <p>Month</p>
+                  </article>
+                  <article>
+                     <h1>00</h1>
+                     <p>Day</p>
+                  </article>
+               </div>
+            </section>
+            <section class="next-birthday">
+               <h1>Next Birthday</h1>
+               <div class="content-container">
+                  <article>
+                     <h1>00</h1>
+                     <p>Month</p>
+                  </article>
+                  <article>
+                     <h1>00</h1>
+                     <p>Days</p>
+                  </article>
+               </div>
+            </section>
+            <section class="extra-info">
+               <h1>Extra Info</h1>
+               <div class="content-container">
+                  <table>
+                     <tr>
+                        <th>Total Year</th>
+                        <td>00</td>
+                     </tr>
+                     <tr>
+                        <th>Total Month</th>
+                        <td>00</td>
+                     </tr>
+                     <tr>
+                        <th>Total Week</th>
+                        <td>00</td>
+                     </tr>
+                     <tr>
+                        <th>Total Day</th>
+                        <td>00</td>
+                     </tr>
+                     <tr>
+                        <th>Total Hour</th>
+                        <td>00</td>
+                     </tr>
+                     <tr>
+                        <th>Total Minutes</th>
+                        <td>00</td>
+                     </tr>
+                     <tr>
+                        <th>Total Seconds</th>
+                        <td>00</td>
+                     </tr>
+                  </table>
+               </div>
+            </section>
+         </section>
+      </div>
+      <script src="main.js"></script>
+   </body>
+</html>
